@@ -31,27 +31,27 @@ export const SaleWindowAdvisorView: React.FC = () => {
   const style = recColorMap[advice.recommendation] || recColorMap['WAIT 7–10 DAYS'];
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-8 sm:space-y-10">
       {/* Input Parameters Card */}
-      <div className="bg-white p-6 rounded-3xl border border-slate-200 shadow-sm space-y-4">
-        <div className="flex justify-between items-center border-b border-slate-100 pb-4">
+      <div className="surface-card p-7 sm:p-8 rounded-3xl space-y-6">
+        <div className="flex justify-between items-center border-b border-slate-100 pb-5">
           <div>
-            <h2 className="text-xl font-bold font-serif text-slate-900 flex items-center gap-2">
-              <Clock className="w-5 h-5 text-emerald-600" />
+            <h2 className="text-xl sm:text-2xl font-bold font-serif text-slate-900 flex items-center gap-3">
+              <Clock className="w-6 h-6 text-emerald-600" />
               <span>Event-Aware AI Sale Window Advisor</span>
             </h2>
-            <p className="text-xs text-slate-500 mt-0.5">Optimizes harvest sale timing & risk hedging based on price trajectory & event volatility</p>
+            <p className="text-xs sm:text-sm text-slate-500 font-medium mt-1">Optimizes harvest sale timing & risk hedging based on price trajectory & event volatility</p>
           </div>
           <Badge type="demo" value="Demo Data" />
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-4 gap-4 text-xs">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 text-xs sm:text-sm">
           <div>
-            <label className="block font-semibold text-slate-700 mb-1">Crop Type</label>
+            <label className="block font-bold text-slate-700 mb-1.5">Crop Type</label>
             <select
               value={cropName}
               onChange={(e) => setCropName(e.target.value)}
-              className="w-full p-2.5 rounded-xl border border-slate-200 focus:ring-2 focus:ring-emerald-500 font-semibold"
+              className="w-full p-3 rounded-2xl border border-slate-200 focus:ring-2 focus:ring-emerald-500 font-bold"
             >
               <option value="Wheat">Wheat</option>
               <option value="Paddy (Rice)">Paddy (Rice)</option>
@@ -62,31 +62,31 @@ export const SaleWindowAdvisorView: React.FC = () => {
           </div>
 
           <div>
-            <label className="block font-semibold text-slate-700 mb-1">Produce Quantity (q)</label>
+            <label className="block font-bold text-slate-700 mb-1.5">Produce Quantity (q)</label>
             <input
               type="number"
               value={quantity}
               onChange={(e) => setQuantity(Number(e.target.value))}
-              className="w-full p-2.5 rounded-xl border border-slate-200 focus:ring-2 focus:ring-emerald-500 font-semibold"
+              className="w-full p-3 rounded-2xl border border-slate-200 focus:ring-2 focus:ring-emerald-500 font-bold"
             />
           </div>
 
           <div>
-            <label className="block font-semibold text-slate-700 mb-1">Current Price (₹/q)</label>
+            <label className="block font-bold text-slate-700 mb-1.5">Current Price (₹/q)</label>
             <input
               type="number"
               value={currentPrice}
               onChange={(e) => setCurrentPrice(Number(e.target.value))}
-              className="w-full p-2.5 rounded-xl border border-slate-200 focus:ring-2 focus:ring-emerald-500 font-semibold"
+              className="w-full p-3 rounded-2xl border border-slate-200 focus:ring-2 focus:ring-emerald-500 font-bold"
             />
           </div>
 
           <div>
-            <label className="block font-semibold text-slate-700 mb-1">Active Event Filter</label>
+            <label className="block font-bold text-slate-700 mb-1.5">Active Event Filter</label>
             <select
               value={selectedEvent}
               onChange={(e) => setSelectedEvent(e.target.value)}
-              className="w-full p-2.5 rounded-xl border border-slate-200 focus:ring-2 focus:ring-emerald-500 font-bold"
+              className="w-full p-3 rounded-2xl border border-slate-200 focus:ring-2 focus:ring-emerald-500 font-bold"
             >
               <option value="">No Active Event</option>
               <option value="Heavy Rainfall">Heavy Rainfall</option>
@@ -99,46 +99,46 @@ export const SaleWindowAdvisorView: React.FC = () => {
       </div>
 
       {/* Main AI Advice Hero Card */}
-      <div className={`${style.bg} ${style.border} border text-white rounded-3xl p-8 shadow-2xl space-y-6`}>
-        <div className="flex flex-col sm:flex-row justify-between sm:items-center gap-4 border-b border-white/10 pb-6">
-          <div>
-            <span className={`inline-block px-3 py-1 rounded-full text-xs font-extrabold tracking-wider uppercase ${style.badgeBg} mb-3`}>
+      <div className={`${style.bg} ${style.border} border text-white rounded-3xl p-8 sm:p-10 shadow-2xl space-y-7`}>
+        <div className="flex flex-col sm:flex-row justify-between sm:items-center gap-6 border-b border-white/10 pb-7">
+          <div className="space-y-2">
+            <span className={`inline-block px-4 py-1.5 rounded-full text-xs font-black tracking-wider uppercase ${style.badgeBg}`}>
               DECISION-SUPPORT RECOMMENDATION
             </span>
-            <h3 className="text-3xl font-black font-serif text-white tracking-tight">{advice.recommendation}</h3>
-            <p className="text-xs text-slate-300 mt-1">Suggested Window: <strong className="text-white">{advice.window}</strong></p>
+            <h3 className="text-3xl sm:text-5xl font-black font-serif text-white tracking-tight">{advice.recommendation}</h3>
+            <p className="text-xs sm:text-sm text-slate-300 font-medium">Suggested Window: <strong className="text-white">{advice.window}</strong></p>
           </div>
 
-          <div className="bg-white/10 backdrop-blur-md p-4 rounded-2xl border border-white/10 text-left sm:text-right min-w-[220px]">
-            <p className="text-xs text-slate-300 font-medium">Estimated Net Gain</p>
-            <p className="text-2xl font-extrabold text-amber-300">+₹{advice.estimated_net_gain_rs.toLocaleString()}</p>
-            <p className="text-[11px] text-slate-300 mt-0.5">After warehouse holding expenses</p>
+          <div className="bg-white/10 backdrop-blur-md p-6 rounded-2xl border border-white/10 text-left sm:text-right min-w-[240px] space-y-1">
+            <p className="text-xs text-slate-300 font-bold uppercase tracking-wider">Estimated Net Gain</p>
+            <p className="text-3xl sm:text-4xl font-black text-amber-300 tracking-tight">+₹{advice.estimated_net_gain_rs.toLocaleString()}</p>
+            <p className="text-xs text-slate-300 font-medium">After warehouse holding expenses</p>
           </div>
         </div>
 
         {/* Reason Explanation */}
-        <div className="space-y-3">
-          <div className="flex items-center gap-2 text-amber-300 font-bold text-sm">
+        <div className="space-y-4">
+          <div className="flex items-center gap-2.5 text-amber-300 font-bold text-sm sm:text-base">
             <Lightbulb className="w-5 h-5" />
             <span>AI Analytical Rationale & Decision Factors</span>
           </div>
-          <p className="text-slate-200 text-sm leading-relaxed bg-black/30 p-5 rounded-2xl border border-white/10">
+          <p className="text-slate-100 text-sm sm:text-base leading-relaxed bg-black/40 p-6 rounded-2xl border border-white/10 font-medium">
             "{advice.reason}"
           </p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-2 text-xs">
-          <div className="p-3.5 rounded-2xl bg-white/5 border border-white/10">
-            <span className="text-slate-400">Current Mandi Price</span>
-            <p className="font-bold text-base text-white mt-0.5">₹{advice.current_price} / quintal</p>
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 pt-2 text-xs sm:text-sm">
+          <div className="p-5 rounded-2xl bg-white/5 border border-white/10">
+            <span className="text-slate-400 font-medium">Current Mandi Price</span>
+            <p className="font-extrabold text-lg text-white mt-1">₹{advice.current_price} / quintal</p>
           </div>
-          <div className="p-3.5 rounded-2xl bg-white/5 border border-white/10">
-            <span className="text-slate-400">Projected 15-Day Range</span>
-            <p className="font-bold text-base text-emerald-300 mt-0.5">{advice.projected_15d_range || '₹2,515–₹2,692'}</p>
+          <div className="p-5 rounded-2xl bg-white/5 border border-white/10">
+            <span className="text-slate-400 font-medium">Projected 15-Day Range</span>
+            <p className="font-extrabold text-lg text-emerald-300 mt-1">{advice.projected_15d_range || '₹2,515–₹2,692'}</p>
           </div>
-          <div className="p-3.5 rounded-2xl bg-white/5 border border-white/10">
-            <span className="text-slate-400">Forecast Confidence</span>
-            <p className="font-bold text-base text-amber-300 mt-0.5">{advice.confidence_level || 'Medium'} Confidence</p>
+          <div className="p-5 rounded-2xl bg-white/5 border border-white/10">
+            <span className="text-slate-400 font-medium">Forecast Confidence</span>
+            <p className="font-extrabold text-lg text-amber-300 mt-1">{advice.confidence_level || 'Medium'} Confidence</p>
           </div>
         </div>
       </div>

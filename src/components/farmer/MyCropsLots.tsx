@@ -49,15 +49,15 @@ export const MyCropsLots: React.FC<MyCropsLotsProps> = ({ lots, onRefresh }) => 
   };
 
   return (
-    <div className="space-y-6">
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-white p-6 rounded-3xl border border-slate-200 shadow-sm">
+    <div className="space-y-8 sm:space-y-10">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 surface-card p-7 sm:p-8 rounded-3xl">
         <div>
-          <h2 className="text-xl font-bold font-serif text-slate-900">My Crop Lots & Produce Inventory</h2>
-          <p className="text-xs text-slate-500 mt-1">Publish produce lots with moisture & grade specifications for buyers</p>
+          <h2 className="text-xl sm:text-2xl font-bold font-serif text-slate-900">My Crop Lots & Produce Inventory</h2>
+          <p className="text-xs sm:text-sm text-slate-500 font-medium mt-1">Publish produce lots with moisture & grade specifications for buyers</p>
         </div>
         <button
           onClick={() => setShowAddModal(true)}
-          className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold shadow-lg shadow-emerald-600/20 transition-all"
+          className="inline-flex items-center gap-2 px-6 py-3.5 rounded-2xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs sm:text-sm font-bold shadow-lg shadow-emerald-600/25 transition-all"
         >
           <Plus className="w-4 h-4" />
           <span>Publish New Lot</span>
@@ -65,48 +65,48 @@ export const MyCropsLots: React.FC<MyCropsLotsProps> = ({ lots, onRefresh }) => 
       </div>
 
       {/* Lot Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
         {lots.map(lot => (
-          <div key={lot.id} className="bg-white rounded-3xl border border-slate-200 p-6 shadow-sm hover:shadow-md transition-all flex flex-col justify-between">
+          <div key={lot.id} className="surface-card-hover rounded-3xl p-7 flex flex-col justify-between space-y-5 min-h-[320px]">
             <div>
               <div className="flex justify-between items-start mb-3">
                 <div>
-                  <h3 className="text-base font-bold text-slate-900">{lot.crop_name}</h3>
-                  <p className="text-xs text-slate-500">{lot.variety} • {lot.grade}</p>
+                  <h3 className="text-lg sm:text-xl font-bold text-slate-900 font-serif">{lot.crop_name}</h3>
+                  <p className="text-xs sm:text-sm text-slate-500 font-medium mt-0.5">{lot.variety} • {lot.grade}</p>
                 </div>
                 <Badge type="status" value={lot.status} />
               </div>
 
-              <div className="space-y-2 text-xs py-3 border-y border-slate-100 my-3">
+              <div className="space-y-3 text-xs sm:text-sm py-4 border-y border-slate-100 my-4">
                 <div className="flex justify-between text-slate-600">
                   <span>Quantity:</span>
                   <span className="font-bold text-slate-900">{lot.quantity_quintals} Quintals ({lot.quantity_quintals / 10} Tons)</span>
                 </div>
                 <div className="flex justify-between text-slate-600">
                   <span>Moisture Content:</span>
-                  <span className="font-semibold text-emerald-700">{lot.moisture_pct}%</span>
+                  <span className="font-bold text-emerald-700">{lot.moisture_pct}%</span>
                 </div>
                 <div className="flex justify-between text-slate-600">
                   <span>Min Price Asking:</span>
-                  <span className="font-extrabold text-slate-900">₹{lot.minimum_price} / q</span>
+                  <span className="font-black text-slate-900 text-base">₹{lot.minimum_price} / q</span>
                 </div>
                 <div className="flex justify-between text-slate-600">
                   <span>Warehouse Storage:</span>
-                  <span className={lot.storage_available ? 'text-emerald-700 font-semibold' : 'text-slate-400'}>
+                  <span className={lot.storage_available ? 'text-emerald-700 font-bold' : 'text-slate-400 font-medium'}>
                     {lot.storage_available ? 'Available (Accredited)' : 'Immediate Sale'}
                   </span>
                 </div>
               </div>
 
-              <div className="flex items-center gap-1.5 text-slate-500 text-[11px]">
-                <MapPin className="w-3.5 h-3.5 text-slate-400" />
+              <div className="flex items-center gap-2 text-slate-500 text-xs font-medium">
+                <MapPin className="w-4 h-4 text-slate-400" />
                 <span>{lot.location}, {lot.district}</span>
               </div>
             </div>
 
-            <div className="mt-4 pt-3 border-t border-slate-100 flex justify-between items-center text-xs">
-              <span className="text-slate-400 text-[11px]">Published: {lot.created_at}</span>
-              {lot.is_bulk && <span className="text-[10px] font-bold text-indigo-700 bg-indigo-50 px-2 py-0.5 rounded">FPO Bulk Lot ({lot.aggregated_farmer_count} Farmers)</span>}
+            <div className="pt-4 border-t border-slate-100 flex justify-between items-center text-xs">
+              <span className="text-slate-400 font-medium">Published: {lot.created_at}</span>
+              {lot.is_bulk && <span className="text-xs font-bold text-indigo-700 bg-indigo-50 px-2.5 py-1 rounded-lg">FPO Bulk Lot ({lot.aggregated_farmer_count} Farmers)</span>}
             </div>
           </div>
         ))}

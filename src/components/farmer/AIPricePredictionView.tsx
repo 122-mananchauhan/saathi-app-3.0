@@ -48,25 +48,25 @@ export const AIPricePredictionView: React.FC = () => {
   };
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-8 sm:space-y-10">
       {/* Top Header & Horizon Tabs */}
-      <div className="bg-white p-6 rounded-3xl border border-slate-200 shadow-sm space-y-4">
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-100 pb-4">
+      <div className="surface-card p-7 sm:p-8 rounded-3xl space-y-6">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-100 pb-5">
           <div>
-            <div className="flex items-center gap-2">
-              <Sparkles className="w-5 h-5 text-amber-500" />
-              <h2 className="text-xl font-bold font-serif text-slate-900">Event-Aware AI Price Forecasting Pipeline</h2>
+            <div className="flex items-center gap-2.5">
+              <Sparkles className="w-6 h-6 text-amber-500" />
+              <h2 className="text-xl sm:text-2xl font-bold font-serif text-slate-900">Event-Aware AI Price Forecasting Pipeline</h2>
             </div>
-            <p className="text-xs text-slate-500 mt-0.5">
+            <p className="text-xs sm:text-sm text-slate-500 font-medium mt-1">
               Integrates historical mandi prices, arrival trends, supply-demand data, weather events, and transport factors
             </p>
           </div>
 
-          <div className="flex items-center gap-2">
-            <span className="text-[11px] font-semibold text-slate-400">{forecast.last_updated_timestamp}</span>
+          <div className="flex items-center gap-3">
+            <span className="text-xs font-semibold text-slate-400">{forecast.last_updated_timestamp}</span>
             <button
               onClick={fetchForecast}
-              className="p-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-600 transition-colors"
+              className="p-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-600 transition-colors"
               title="Refresh Forecast"
             >
               <RefreshCw className={`w-4 h-4 ${loading ? 'animate-spin' : ''}`} />
@@ -75,13 +75,13 @@ export const AIPricePredictionView: React.FC = () => {
         </div>
 
         {/* Input Parameters & Horizon Selector */}
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 text-xs sm:text-sm">
           <div>
-            <label className="block font-semibold text-slate-700 mb-1">Select Crop</label>
+            <label className="block font-bold text-slate-700 mb-1.5">Select Crop</label>
             <select
               value={cropName}
               onChange={(e) => setCropName(e.target.value)}
-              className="w-full p-2.5 rounded-xl border border-slate-200 focus:ring-2 focus:ring-emerald-500 font-semibold"
+              className="w-full p-3 rounded-2xl border border-slate-200 focus:ring-2 focus:ring-emerald-500 font-bold"
             >
               <option value="Wheat">Wheat</option>
               <option value="Paddy (Rice)">Paddy (Rice)</option>
@@ -92,24 +92,24 @@ export const AIPricePredictionView: React.FC = () => {
           </div>
 
           <div>
-            <label className="block font-semibold text-slate-700 mb-1">Current Base Price (₹/q)</label>
+            <label className="block font-bold text-slate-700 mb-1.5">Current Base Price (₹/q)</label>
             <input
               type="number"
               value={currentPrice}
               onChange={(e) => setCurrentPrice(Number(e.target.value))}
-              className="w-full p-2.5 rounded-xl border border-slate-200 focus:ring-2 focus:ring-emerald-500 font-bold"
+              className="w-full p-3 rounded-2xl border border-slate-200 focus:ring-2 focus:ring-emerald-500 font-bold"
             />
           </div>
 
           <div>
-            <label className="block font-semibold text-slate-700 mb-1">Forecast Horizon</label>
-            <div className="grid grid-cols-3 gap-1.5 p-1 bg-slate-100 rounded-xl font-bold">
+            <label className="block font-bold text-slate-700 mb-1.5">Forecast Horizon</label>
+            <div className="grid grid-cols-3 gap-1.5 p-1.5 bg-slate-100 rounded-2xl font-bold">
               {[7, 15, 30].map((h) => (
                 <button
                   key={h}
                   onClick={() => setHorizonDays(h)}
-                  className={`py-1.5 rounded-lg transition-all ${
-                    horizonDays === h ? 'bg-emerald-600 text-white shadow' : 'text-slate-600 hover:bg-white'
+                  className={`py-2 rounded-xl transition-all ${
+                    horizonDays === h ? 'bg-emerald-600 text-white shadow-md' : 'text-slate-600 hover:bg-white'
                   }`}
                 >
                   {h} Days
@@ -121,21 +121,21 @@ export const AIPricePredictionView: React.FC = () => {
       </div>
 
       {/* Interactive External Event Simulation Bar */}
-      <div className="bg-slate-900 text-white p-5 rounded-3xl border border-slate-800 space-y-3">
+      <div className="bg-slate-950 text-white p-6 sm:p-7 rounded-3xl border border-slate-800 space-y-4 shadow-xl">
         <div className="flex items-center justify-between">
-          <div className="flex items-center gap-2 text-amber-400 font-bold text-xs">
+          <div className="flex items-center gap-2 text-amber-400 font-bold text-xs sm:text-sm">
             <Zap className="w-4 h-4 animate-bounce" />
             <span>EVENT DETECTION & SIMULATION LAYER:</span>
-            <span className="text-slate-300 font-normal">Test how newly reported events dynamically recalibrate the forecast</span>
+            <span className="text-slate-300 font-normal hidden md:inline">Test how newly reported events dynamically recalibrate the forecast</span>
           </div>
-          <span className="text-[10px] text-slate-400">Click event to apply</span>
+          <span className="text-xs text-slate-400 font-medium">Click event to apply</span>
         </div>
 
-        <div className="flex flex-wrap gap-2 text-xs">
+        <div className="flex flex-wrap gap-2.5 text-xs sm:text-sm">
           <button
             onClick={() => setSelectedEvent('')}
-            className={`px-3 py-1.5 rounded-xl font-semibold transition-all ${
-              selectedEvent === '' ? 'bg-emerald-500 text-slate-950 font-bold shadow' : 'bg-slate-800 text-slate-300 hover:bg-slate-700'
+            className={`px-4 py-2 rounded-xl font-semibold transition-all ${
+              selectedEvent === '' ? 'bg-emerald-500 text-slate-950 font-bold shadow-md' : 'bg-slate-800 text-slate-300 hover:bg-slate-700'
             }`}
           >
             No Active Event (Normal Market)
@@ -151,8 +151,8 @@ export const AIPricePredictionView: React.FC = () => {
             <button
               key={e}
               onClick={() => setSelectedEvent(e)}
-              className={`px-3 py-1.5 rounded-xl font-semibold transition-all ${
-                selectedEvent === e ? 'bg-amber-400 text-slate-950 font-extrabold shadow' : 'bg-slate-800 text-slate-300 hover:bg-slate-700'
+              className={`px-4 py-2 rounded-xl font-semibold transition-all ${
+                selectedEvent === e ? 'bg-amber-400 text-slate-950 font-extrabold shadow-md' : 'bg-slate-800 text-slate-300 hover:bg-slate-700'
               }`}
             >
               {e}
@@ -163,15 +163,15 @@ export const AIPricePredictionView: React.FC = () => {
 
       {/* Visible Market Event Alert Banner (If Event Active) */}
       {forecast.event_alert && (
-        <div className="bg-amber-500/10 border-2 border-amber-500/60 rounded-3xl p-6 shadow-md text-amber-950 space-y-2 animate-in fade-in">
+        <div className="bg-amber-500/10 border-2 border-amber-500/60 rounded-3xl p-7 shadow-md text-amber-950 space-y-3 animate-in fade-in">
           <div className="flex justify-between items-start">
-            <div className="flex items-center gap-2">
-              <AlertTriangle className="w-6 h-6 text-amber-600 shrink-0" />
+            <div className="flex items-center gap-3">
+              <AlertTriangle className="w-7 h-7 text-amber-600 shrink-0" />
               <div>
                 <span className="text-xs font-black uppercase tracking-wider text-amber-800">
                   ⚠️ MARKET ALERT: {forecast.event_alert.type.toUpperCase()} DETECTED
                 </span>
-                <h3 className="text-base font-bold text-slate-900 mt-0.5">{forecast.event_alert.headline}</h3>
+                <h3 className="text-lg font-bold text-slate-900 mt-0.5">{forecast.event_alert.headline}</h3>
               </div>
             </div>
             <span className="text-xs font-bold bg-amber-200 text-amber-900 px-3 py-1 rounded-full border border-amber-300">
@@ -179,11 +179,11 @@ export const AIPricePredictionView: React.FC = () => {
             </span>
           </div>
 
-          <p className="text-xs text-slate-800 leading-relaxed pl-8">
+          <p className="text-xs sm:text-sm text-slate-800 leading-relaxed pl-10 font-medium">
             <strong>Impact Assessment:</strong> {forecast.event_alert.impact_summary}
           </p>
 
-          <div className="pl-8 pt-1 flex flex-wrap gap-4 text-[11px] font-semibold text-slate-700">
+          <div className="pl-10 pt-1 flex flex-wrap gap-4 text-xs font-semibold text-slate-700">
             <span>Affected Region: {forecast.event_alert.region_affected}</span>
             <span>Confidence Rating: <strong className="text-amber-800">{forecast.confidence.level} ({forecast.confidence.score}%)</strong></span>
             <span className="text-emerald-800 font-bold">Action: Review sale window hedging</span>
@@ -192,42 +192,42 @@ export const AIPricePredictionView: React.FC = () => {
       )}
 
       {/* Primary Forecast Summary Cards */}
-      <div className="grid grid-cols-1 sm:grid-cols-4 gap-4 text-xs">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 text-xs sm:text-sm">
         {/* Card 1: Current Price */}
-        <div className="bg-white p-5 rounded-3xl border border-slate-200 shadow-sm">
-          <span className="font-semibold text-slate-500">Current Base Price</span>
-          <p className="text-2xl font-extrabold text-slate-900 mt-1">₹{currentPrice.toLocaleString()} / q</p>
-          <span className="text-[11px] text-slate-400 font-medium">{forecast.region}</span>
+        <div className="surface-card p-6 min-h-[160px] flex flex-col justify-between">
+          <span className="font-bold uppercase tracking-wider text-slate-500 text-xs">Current Base Price</span>
+          <p className="text-3xl sm:text-4xl font-black text-slate-900 tracking-tight my-2">₹{currentPrice.toLocaleString()} <span className="text-base font-semibold text-slate-500">/ q</span></p>
+          <span className="text-xs text-slate-400 font-medium">{forecast.region}</span>
         </div>
 
         {/* Card 2: Expected Price Range */}
-        <div className="bg-emerald-50/70 p-5 rounded-3xl border border-emerald-200 shadow-sm">
-          <span className="font-semibold text-emerald-800">{horizonDays}-Day Expected Price Range</span>
-          <p className="text-2xl font-extrabold text-emerald-700 mt-1">
+        <div className="bg-emerald-50/80 p-6 rounded-3xl border border-emerald-200 shadow-sm min-h-[160px] flex flex-col justify-between">
+          <span className="font-bold uppercase tracking-wider text-emerald-800 text-xs">{horizonDays}-Day Expected Price Range</span>
+          <p className="text-2xl sm:text-3xl font-black text-emerald-700 tracking-tight my-2">
             ₹{forecast.expected_price_range.min.toLocaleString()} – ₹{forecast.expected_price_range.max.toLocaleString()}
           </p>
-          <p className="text-[11px] text-emerald-900 font-bold mt-1">
+          <p className="text-xs text-emerald-900 font-bold">
             Modal Target: ₹{forecast.expected_price_range.modal.toLocaleString()}/q ({forecast.expected_price_range.change_pct > 0 ? '+' : ''}{forecast.expected_price_range.change_pct}%)
           </p>
         </div>
 
         {/* Card 3: Confidence & Uncertainty */}
-        <div className="bg-white p-5 rounded-3xl border border-slate-200 shadow-sm">
-          <span className="font-semibold text-slate-500">Forecast Confidence</span>
-          <div className="flex items-center gap-2 mt-1">
-            <p className="text-2xl font-extrabold text-slate-900">{forecast.confidence.score}%</p>
-            <span className={`px-2 py-0.5 rounded-full text-xs font-bold border ${confidenceBadgeColor[forecast.confidence.level]}`}>
+        <div className="surface-card p-6 min-h-[160px] flex flex-col justify-between">
+          <span className="font-bold uppercase tracking-wider text-slate-500 text-xs">Forecast Confidence</span>
+          <div className="flex items-center gap-3 my-2">
+            <p className="text-3xl sm:text-4xl font-black text-slate-900 tracking-tight">{forecast.confidence.score}%</p>
+            <span className={`px-2.5 py-1 rounded-full text-xs font-bold border ${confidenceBadgeColor[forecast.confidence.level]}`}>
               {forecast.confidence.level} Confidence
             </span>
           </div>
-          <p className="text-[10px] text-slate-400 mt-1">{forecast.confidence.uncertainty_reason}</p>
+          <p className="text-xs text-slate-400 font-medium">{forecast.confidence.uncertainty_reason}</p>
         </div>
 
         {/* Card 4: Data Quality */}
-        <div className="bg-white p-5 rounded-3xl border border-slate-200 shadow-sm">
-          <span className="font-semibold text-slate-500">Data Completeness Index</span>
-          <p className="text-2xl font-extrabold text-indigo-700 mt-1">{forecast.data_quality_pct}%</p>
-          <span className="text-[11px] text-slate-400 font-medium">Verified Market & Weather Data</span>
+        <div className="surface-card p-6 min-h-[160px] flex flex-col justify-between">
+          <span className="font-bold uppercase tracking-wider text-slate-500 text-xs">Data Completeness Index</span>
+          <p className="text-3xl sm:text-4xl font-black text-indigo-700 tracking-tight my-2">{forecast.data_quality_pct}%</p>
+          <span className="text-xs text-slate-400 font-medium">Verified Market & Weather Data</span>
         </div>
       </div>
 

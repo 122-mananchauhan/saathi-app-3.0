@@ -17,15 +17,15 @@
 }
 @layer components {
   .glass { @apply border border-white/80 bg-white/80 shadow-soft backdrop-blur-xl; }
-  .page-shell { @apply w-full px-4 sm:px-6 lg:px-8 xl:px-10 py-6 sm:py-8; }
-  .section-label { @apply mb-3 flex items-center gap-2 text-[10px] font-bold uppercase tracking-[0.18em] text-green-700; }
-  .nav-link { @apply flex w-full items-center gap-3 rounded-xl px-3 py-2.5 text-left text-sm font-medium text-slate-500 transition hover:bg-green-50 hover:text-green-800; }
-  .nav-link-active { @apply bg-gradient-to-r from-green-700 to-emerald-600 text-white shadow-glow hover:text-white; }
-  .metric-card { @apply glass relative overflow-hidden rounded-2xl p-5 transition duration-300 hover:-translate-y-1 hover:shadow-glow; }
-  .chart-card { @apply glass rounded-2xl p-5; }
-  .surface-card { @apply rounded-2xl border border-slate-200/80 bg-white shadow-[0_8px_30px_rgba(15,23,42,0.045)]; }
-  .surface-card-hover { @apply surface-card transition duration-200 hover:-translate-y-0.5 hover:border-emerald-200 hover:shadow-[0_16px_36px_rgba(15,23,42,0.09)]; }
-  .tab-scroller { @apply flex gap-1 overflow-x-auto rounded-2xl border border-slate-200/80 bg-white/85 p-1.5 shadow-[0_5px_18px_rgba(15,23,42,0.04)] [scrollbar-width:none]; }
+  .page-shell { @apply max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 py-8 sm:py-10 space-y-8 sm:space-y-10 lg:space-y-12; }
+  .section-label { @apply mb-3 flex items-center gap-2 text-xs font-bold uppercase tracking-[0.2em] text-emerald-800; }
+  .nav-link { @apply flex w-full items-center gap-3 rounded-2xl px-4 py-3 text-left text-sm font-semibold text-slate-600 transition hover:bg-emerald-50 hover:text-emerald-900; }
+  .nav-link-active { @apply bg-gradient-to-r from-emerald-700 to-teal-600 text-white shadow-lg shadow-emerald-700/20 hover:text-white; }
+  .metric-card { @apply glass relative overflow-hidden rounded-3xl p-6 sm:p-7 transition duration-300 hover:-translate-y-1 hover:shadow-xl; }
+  .chart-card { @apply glass rounded-3xl p-6 sm:p-8; }
+  .surface-card { @apply rounded-3xl border border-slate-200/80 bg-white shadow-[0_10px_35px_rgba(15,23,42,0.045)]; }
+  .surface-card-hover { @apply surface-card transition duration-300 hover:-translate-y-1 hover:border-emerald-300/80 hover:shadow-[0_20px_45px_rgba(15,23,42,0.09)]; }
+  .tab-scroller { @apply flex gap-2 overflow-x-auto rounded-3xl border border-slate-200/80 bg-white/90 p-2 shadow-[0_6px_22px_rgba(15,23,42,0.04)] [scrollbar-width:none]; }
   .tab-scroller::-webkit-scrollbar { display: none; }
   .soft-grid { background-image: linear-gradient(rgba(34,197,94,.055) 1px, transparent 1px), linear-gradient(90deg, rgba(34,197,94,.055) 1px, transparent 1px); background-size: 42px 42px; }
   .hero-orb { background: radial-gradient(circle, rgba(110,231,183,.26) 0%, rgba(52,211,153,.07) 42%, transparent 70%); }

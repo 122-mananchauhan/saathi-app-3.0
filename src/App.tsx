@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { AuthProvider, useAuth } from './context/AuthContext';
 import { Header } from './components/common/Header';
-import { Footer } from './components/common/Footer';
 import { LandingPage } from './components/auth/LandingPage';
 import { FarmerDashboard } from './components/farmer/FarmerDashboard';
 import { FPODashboard } from './components/fpo/FPODashboard';
@@ -32,8 +31,6 @@ const MainContent: React.FC = () => {
         {role === 'buyer' && <BuyerDashboard />}
         {role === 'admin' && <AdminDashboard />}
       </main>
-
-      <Footer />
 
       <CSVImportModal
         isOpen={showCSVModal}

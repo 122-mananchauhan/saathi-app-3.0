@@ -93,22 +93,22 @@ export const BuyerDashboard: React.FC = () => {
   });
 
   return (
-    <div className="page-shell space-y-5 sm:space-y-6">
+    <div className="page-shell space-y-8 sm:space-y-10 lg:space-y-12">
       {/* Buyer Hero Banner */}
-      <div className="relative isolate overflow-hidden bg-gradient-to-r from-[#102d4c] via-blue-900 to-indigo-950 text-white rounded-3xl p-6 sm:p-8 shadow-xl border border-blue-900 flex flex-col md:flex-row justify-between items-start md:items-end gap-5">
-        <div className="absolute -right-10 -top-20 h-64 w-64 rounded-full bg-sky-300/10 blur-2xl" />
-        <div>
-          <div className="flex items-center gap-2 mb-1">
-            <span className="text-[10px] font-bold uppercase tracking-[0.18em] text-blue-200">Procurement workspace</span>
+      <div className="relative isolate overflow-hidden bg-gradient-to-r from-[#102d4c] via-blue-900 to-indigo-950 text-white rounded-3xl p-8 sm:p-10 lg:p-12 shadow-2xl border border-blue-900/80 flex flex-col md:flex-row justify-between items-start md:items-end gap-8">
+        <div className="absolute -right-10 -top-20 h-80 w-80 rounded-full bg-sky-300/10 blur-3xl pointer-events-none" />
+        <div className="space-y-3">
+          <div className="flex items-center gap-2.5">
+            <span className="text-xs font-bold uppercase tracking-[0.2em] text-blue-200">Procurement workspace</span>
             <Badge type="verification" value={user?.verification_badge || 'TRUSTED'} />
           </div>
-          <h1 className="text-3xl sm:text-4xl font-extrabold font-serif leading-none">{user?.name || 'AgroCorp Foods Pvt Ltd'}</h1>
-          <p className="text-xs text-blue-100/70 mt-3">Karnal, Haryana <span className="mx-1.5 text-blue-300">•</span> <span className="text-emerald-300 font-bold">100% on-time escrow</span></p>
+          <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black font-serif tracking-tight leading-tight">{user?.name || 'AgroCorp Foods Pvt Ltd'}</h1>
+          <p className="text-sm sm:text-base text-blue-100/80 font-medium">Karnal, Haryana <span className="mx-2 text-blue-300">•</span> <span className="text-emerald-300 font-bold">100% on-time escrow</span></p>
         </div>
 
         <button
           onClick={() => setShowPostReqModal(true)}
-          className="relative px-5 py-2.5 rounded-xl bg-white text-blue-950 hover:bg-blue-50 text-xs font-bold shadow-lg transition-all flex items-center gap-2"
+          className="relative px-6 py-3.5 rounded-2xl bg-white text-blue-950 hover:bg-blue-50 text-sm font-bold shadow-xl transition-all flex items-center gap-2"
         >
           <Plus className="w-4 h-4" />
           <span>Post Crop Requirement</span>
@@ -116,27 +116,27 @@ export const BuyerDashboard: React.FC = () => {
       </div>
 
       {/* Tabs */}
-      <div className="tab-scroller text-xs font-bold">
+      <div className="tab-scroller text-xs sm:text-sm font-bold">
         <button
           onClick={() => setActiveTab('browse')}
-          className={`px-4 py-2.5 rounded-xl transition-all whitespace-nowrap ${
-            activeTab === 'browse' ? 'bg-blue-600 text-white shadow' : 'text-slate-600 hover:bg-slate-100'
+          className={`px-5 py-3 rounded-2xl transition-all whitespace-nowrap ${
+            activeTab === 'browse' ? 'bg-blue-600 text-white shadow-lg shadow-blue-600/25' : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900'
           }`}
         >
           Browse Farmer & FPO Lots ({filteredLots.length})
         </button>
         <button
           onClick={() => setActiveTab('requirements')}
-          className={`px-4 py-2.5 rounded-xl transition-all whitespace-nowrap ${
-            activeTab === 'requirements' ? 'bg-blue-600 text-white shadow' : 'text-slate-600 hover:bg-slate-100'
+          className={`px-5 py-3 rounded-2xl transition-all whitespace-nowrap ${
+            activeTab === 'requirements' ? 'bg-blue-600 text-white shadow-lg shadow-blue-600/25' : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900'
           }`}
         >
           My Posted Requirements ({requirements.length})
         </button>
         <button
           onClick={() => setActiveTab('my_offers')}
-          className={`px-4 py-2.5 rounded-xl transition-all whitespace-nowrap ${
-            activeTab === 'my_offers' ? 'bg-blue-600 text-white shadow' : 'text-slate-600 hover:bg-slate-100'
+          className={`px-5 py-3 rounded-2xl transition-all whitespace-nowrap ${
+            activeTab === 'my_offers' ? 'bg-blue-600 text-white shadow-lg shadow-blue-600/25' : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900'
           }`}
         >
           Sent Digital Offers ({offers.length})
@@ -145,26 +145,26 @@ export const BuyerDashboard: React.FC = () => {
 
       {/* BROWSE TAB */}
       {activeTab === 'browse' && (
-        <div className="space-y-6">
+        <div className="space-y-8">
           {/* Filters Bar */}
-          <div className="surface-card p-4 flex flex-col sm:flex-row gap-4 items-center justify-between text-xs">
-            <div className="flex items-center gap-2 w-full sm:w-auto">
+          <div className="surface-card p-5 sm:p-6 flex flex-col sm:flex-row gap-4 items-center justify-between text-xs sm:text-sm">
+            <div className="flex items-center gap-3 w-full sm:w-auto">
               <Search className="w-4 h-4 text-slate-400" />
               <input
                 type="text"
                 placeholder="Search crop name..."
                 value={searchCrop}
                 onChange={(e) => setSearchCrop(e.target.value)}
-                className="p-2 border border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-500 w-full sm:w-60"
+                className="p-3 border border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-500 w-full sm:w-72 font-medium"
               />
             </div>
 
-            <div className="flex items-center gap-2">
-              <span className="font-semibold text-slate-600">Filter Grade:</span>
+            <div className="flex items-center gap-3">
+              <span className="font-bold text-slate-700">Filter Grade:</span>
               <select
                 value={filterGrade}
                 onChange={(e) => setFilterGrade(e.target.value)}
-                className="p-2 border border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-500 font-semibold"
+                className="p-3 border border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-500 font-bold"
               >
                 <option value="All">All Grades</option>
                 <option value="Grade A">Grade A</option>
@@ -174,19 +174,19 @@ export const BuyerDashboard: React.FC = () => {
           </div>
 
           {/* Produce Lots Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
             {filteredLots.map(lot => (
-              <div key={lot.id} className="surface-card-hover rounded-3xl p-6 flex flex-col justify-between space-y-4">
+              <div key={lot.id} className="surface-card-hover rounded-3xl p-7 flex flex-col justify-between space-y-5 min-h-[280px]">
                 <div>
                   <div className="flex justify-between items-start">
                     <div>
-                      <h3 className="text-base font-bold text-slate-900">{lot.crop_name}</h3>
-                      <p className="text-xs text-slate-500">{lot.variety} • {lot.grade}</p>
+                      <h3 className="text-lg font-bold text-slate-900 font-serif">{lot.crop_name}</h3>
+                      <p className="text-xs sm:text-sm text-slate-500 font-medium mt-0.5">{lot.variety} • {lot.grade}</p>
                     </div>
-                    {lot.is_bulk && <span className="text-[10px] font-bold text-indigo-700 bg-indigo-50 px-2 py-0.5 rounded">FPO Bulk Lot</span>}
+                    {lot.is_bulk && <span className="text-xs font-bold text-indigo-700 bg-indigo-50 px-2.5 py-1 rounded-lg">FPO Bulk Lot</span>}
                   </div>
 
-                  <div className="space-y-2 text-xs py-3 border-y border-slate-100 my-3">
+                  <div className="space-y-2.5 text-xs sm:text-sm py-4 border-y border-slate-100 my-4">
                     <div className="flex justify-between text-slate-600">
                       <span>Available Volume:</span>
                       <span className="font-bold text-slate-900">{lot.quantity_quintals} Quintals ({lot.quantity_quintals / 10} Tons)</span>
@@ -197,12 +197,12 @@ export const BuyerDashboard: React.FC = () => {
                     </div>
                     <div className="flex justify-between text-slate-600">
                       <span>Seller Asking Price:</span>
-                      <span className="font-extrabold text-slate-900">₹{lot.minimum_price} / quintal</span>
+                      <span className="font-black text-slate-900 text-base">₹{lot.minimum_price} / quintal</span>
                     </div>
                   </div>
 
-                  <div className="flex items-center gap-1 text-slate-500 text-[11px]">
-                    <MapPin className="w-3.5 h-3.5 text-slate-400" />
+                  <div className="flex items-center gap-1.5 text-slate-500 text-xs font-medium">
+                    <MapPin className="w-4 h-4 text-slate-400" />
                     <span>{lot.location}, {lot.district}</span>
                   </div>
                 </div>
@@ -213,9 +213,9 @@ export const BuyerDashboard: React.FC = () => {
                     setOfferPrice(lot.minimum_price);
                     setOfferQty(lot.quantity_quintals);
                   }}
-                  className="w-full py-2.5 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs shadow-md shadow-blue-600/20 transition-all flex items-center justify-center gap-2"
+                  className="w-full py-3 rounded-2xl bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs sm:text-sm shadow-md shadow-blue-600/20 transition-all flex items-center justify-center gap-2"
                 >
-                  <Send className="w-3.5 h-3.5" />
+                  <Send className="w-4 h-4" />
                   <span>Send Direct Offer</span>
                 </button>
               </div>

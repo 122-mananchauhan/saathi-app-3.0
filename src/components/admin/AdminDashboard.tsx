@@ -41,23 +41,23 @@ export const AdminDashboard: React.FC = () => {
   };
 
   return (
-    <div className="page-shell space-y-5 sm:space-y-6">
+    <div className="page-shell space-y-8 sm:space-y-10 lg:space-y-12">
       {/* Admin Hero Header */}
-      <div className="relative isolate overflow-hidden bg-gradient-to-r from-[#321654] via-purple-950 to-indigo-950 text-white rounded-3xl p-6 sm:p-8 shadow-xl border border-purple-900 flex flex-col md:flex-row justify-between items-start md:items-end gap-5">
-        <div className="absolute -right-10 -top-20 h-64 w-64 rounded-full bg-fuchsia-300/10 blur-2xl" />
-        <div>
-          <div className="flex items-center gap-2 mb-1">
-            <span className="text-[10px] font-bold uppercase tracking-[0.18em] text-purple-200">Government intelligence</span>
+      <div className="relative isolate overflow-hidden bg-gradient-to-r from-[#321654] via-purple-950 to-indigo-950 text-white rounded-3xl p-8 sm:p-10 lg:p-12 shadow-2xl border border-purple-900/80 flex flex-col md:flex-row justify-between items-start md:items-end gap-8">
+        <div className="absolute -right-10 -top-20 h-80 w-80 rounded-full bg-fuchsia-300/10 blur-3xl pointer-events-none" />
+        <div className="space-y-3">
+          <div className="flex items-center gap-2.5">
+            <span className="text-xs font-bold uppercase tracking-[0.2em] text-purple-200">Government intelligence</span>
             <Badge type="verification" value="TRUSTED" />
           </div>
-          <h1 className="text-3xl sm:text-4xl font-extrabold font-serif leading-none">Ecosystem intelligence</h1>
-          <p className="text-xs text-purple-100/70 mt-3">National transactions, market discovery & outcome analytics</p>
+          <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black font-serif tracking-tight leading-tight">Ecosystem intelligence</h1>
+          <p className="text-sm sm:text-base text-purple-100/80 font-medium">National transactions, market discovery & outcome analytics</p>
         </div>
 
         <div className="flex items-center gap-3">
           <button
             onClick={handleExportCSV}
-            className="relative px-4 py-2.5 rounded-xl bg-white hover:bg-purple-50 text-purple-950 text-xs font-bold shadow-lg transition-all flex items-center gap-2"
+            className="relative px-6 py-3.5 rounded-2xl bg-white hover:bg-purple-50 text-purple-950 text-sm font-bold shadow-xl transition-all flex items-center gap-2"
           >
             <Download className="w-4 h-4" />
             <span>Export Analytics CSV Report</span>
@@ -66,13 +66,13 @@ export const AdminDashboard: React.FC = () => {
       </div>
 
       {/* State & District Filters */}
-      <div className="surface-card p-4 flex flex-wrap items-center justify-between gap-4 text-xs">
+      <div className="surface-card p-5 sm:p-6 flex flex-wrap items-center justify-between gap-4 text-xs sm:text-sm">
         <div className="flex items-center gap-3">
           <span className="font-bold text-slate-700">Filter Region:</span>
           <select
             value={selectedState}
             onChange={(e) => setSelectedState(e.target.value)}
-            className="p-2 border border-slate-200 rounded-xl focus:ring-2 focus:ring-purple-500 font-semibold"
+            className="p-3 border border-slate-200 rounded-xl focus:ring-2 focus:ring-purple-500 font-bold"
           >
             <option value="All">All States (National View)</option>
             <option value="Punjab">Punjab</option>
@@ -82,57 +82,57 @@ export const AdminDashboard: React.FC = () => {
           </select>
         </div>
 
-        <span className="text-slate-400 font-medium text-[11px]">Real-time aggregation across mandis & institutional buyers</span>
+        <span className="text-slate-400 font-medium text-xs sm:text-sm">Real-time aggregation across mandis & institutional buyers</span>
       </div>
 
       {/* Ecosystem Metrics Grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-6 gap-4 text-xs">
-        <div className="surface-card-hover p-4 border-t-2 border-t-slate-300">
-          <span className="text-slate-500 font-semibold">Registered Farmers</span>
-          <p className="text-xl font-extrabold text-slate-900 mt-1">{macroMetrics.farmers}</p>
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-6 sm:gap-8">
+        <div className="surface-card-hover p-6 min-h-[140px] flex flex-col justify-between border-t-4 border-t-slate-300">
+          <span className="text-xs font-bold uppercase tracking-wider text-slate-500">Registered Farmers</span>
+          <p className="text-3xl sm:text-4xl font-black text-slate-900 tracking-tight my-1">{macroMetrics.farmers}</p>
         </div>
 
-        <div className="surface-card-hover p-4 border-t-2 border-t-indigo-400">
-          <span className="text-slate-500 font-semibold">Registered FPOs</span>
-          <p className="text-xl font-extrabold text-indigo-700 mt-1">{macroMetrics.fpos}</p>
+        <div className="surface-card-hover p-6 min-h-[140px] flex flex-col justify-between border-t-4 border-t-indigo-400">
+          <span className="text-xs font-bold uppercase tracking-wider text-slate-500">Registered FPOs</span>
+          <p className="text-3xl sm:text-4xl font-black text-indigo-700 tracking-tight my-1">{macroMetrics.fpos}</p>
         </div>
 
-        <div className="surface-card-hover p-4 border-t-2 border-t-blue-400">
-          <span className="text-slate-500 font-semibold">Verified Buyers</span>
-          <p className="text-xl font-extrabold text-blue-700 mt-1">{macroMetrics.buyers}</p>
+        <div className="surface-card-hover p-6 min-h-[140px] flex flex-col justify-between border-t-4 border-t-blue-400">
+          <span className="text-xs font-bold uppercase tracking-wider text-slate-500">Verified Buyers</span>
+          <p className="text-3xl sm:text-4xl font-black text-blue-700 tracking-tight my-1">{macroMetrics.buyers}</p>
         </div>
 
-        <div className="surface-card-hover p-4 border-t-2 border-t-emerald-400">
-          <span className="text-slate-500 font-semibold">Traded Volume</span>
-          <p className="text-xl font-extrabold text-emerald-700 mt-1">{macroMetrics.tradedVolumeTons} T</p>
+        <div className="surface-card-hover p-6 min-h-[140px] flex flex-col justify-between border-t-4 border-t-emerald-400">
+          <span className="text-xs font-bold uppercase tracking-wider text-slate-500">Traded Volume</span>
+          <p className="text-3xl sm:text-4xl font-black text-emerald-700 tracking-tight my-1">{macroMetrics.tradedVolumeTons} T</p>
         </div>
 
-        <div className="surface-card-hover p-4 border-t-2 border-t-purple-400">
-          <span className="text-slate-500 font-semibold">Transaction Value</span>
-          <p className="text-xl font-extrabold text-purple-700 mt-1">₹{macroMetrics.tradedValueCr} Cr</p>
+        <div className="surface-card-hover p-6 min-h-[140px] flex flex-col justify-between border-t-4 border-t-purple-400">
+          <span className="text-xs font-bold uppercase tracking-wider text-slate-500">Transaction Value</span>
+          <p className="text-3xl sm:text-4xl font-black text-purple-700 tracking-tight my-1">₹{macroMetrics.tradedValueCr} Cr</p>
         </div>
 
-        <div className="rounded-2xl border border-emerald-200 bg-emerald-50 p-4 shadow-[0_8px_30px_rgba(5,150,105,0.08)]">
-          <span className="text-emerald-800 font-semibold">Net Price Realization Gain</span>
-          <p className="text-xl font-extrabold text-emerald-700 mt-1">+{macroMetrics.avgNetRealizationGainPct}%</p>
+        <div className="rounded-3xl border border-emerald-200 bg-emerald-50 p-6 min-h-[140px] flex flex-col justify-between shadow-[0_10px_35px_rgba(5,150,105,0.08)]">
+          <span className="text-xs font-bold uppercase tracking-wider text-emerald-800">Net Realization Gain</span>
+          <p className="text-3xl sm:text-4xl font-black text-emerald-700 tracking-tight my-1">+{macroMetrics.avgNetRealizationGainPct}%</p>
         </div>
       </div>
 
       {/* Regional Supply vs Demand Visualizer Chart */}
-      <div className="surface-card rounded-3xl p-6 space-y-4">
-        <div className="flex justify-between items-center">
-          <h3 className="text-sm font-bold text-slate-900">Regional Produce Supply vs Institutional Demand (Tons)</h3>
-          <span className="text-xs font-semibold text-purple-700 bg-purple-50 px-2.5 py-1 rounded-full">
+      <div className="surface-card rounded-3xl p-7 sm:p-8 space-y-6">
+        <div className="flex justify-between items-center flex-wrap gap-3">
+          <h3 className="text-base sm:text-lg font-bold font-serif text-slate-900">Regional Produce Supply vs Institutional Demand (Tons)</h3>
+          <span className="text-xs sm:text-sm font-bold text-purple-700 bg-purple-50 px-3 py-1.5 rounded-full">
             Ecosystem Liquidity Index: 98.2%
           </span>
         </div>
 
-        <div className="h-64 w-full">
+        <div className="h-80 w-full">
           <ResponsiveContainer width="100%" height="100%">
             <BarChart data={regionalSupplyDemand} margin={{ top: 10, right: 30, left: 0, bottom: 0 }}>
               <CartesianGrid strokeDasharray="3 3" stroke="#f1f5f9" />
-              <XAxis dataKey="region" tick={{ fontSize: 10 }} />
-              <YAxis tick={{ fontSize: 10 }} />
+              <XAxis dataKey="region" tick={{ fontSize: 12, fontWeight: 600 }} />
+              <YAxis tick={{ fontSize: 12, fontWeight: 600 }} />
               <Tooltip />
               <Legend />
               <Bar dataKey="supply" fill="#059669" name="Farmer Supply (Tons)" radius={[6, 6, 0, 0]} />
@@ -144,33 +144,33 @@ export const AdminDashboard: React.FC = () => {
 
       {/* Regional Heatmap Table */}
       <div className="surface-card rounded-3xl overflow-hidden">
-        <div className="p-4 bg-slate-50 border-b border-slate-200 text-xs font-bold text-slate-700">
+        <div className="p-5 sm:p-6 bg-slate-50 border-b border-slate-200 text-sm font-bold text-slate-800">
           Regional Supply, Demand & Mandi vs Direct Buyer Price Realization Matrix
         </div>
 
         <div className="overflow-x-auto">
-          <table className="w-full text-xs text-left">
-            <thead className="bg-slate-100 text-slate-600 uppercase text-[10px] font-semibold">
+          <table className="w-full text-xs sm:text-sm text-left">
+            <thead className="bg-slate-100 text-slate-600 uppercase text-[11px] font-semibold tracking-wider">
               <tr>
-                <th className="p-3.5">Region / District</th>
-                <th className="p-3.5">Crop</th>
-                <th className="p-3.5">Supply (Tons)</th>
-                <th className="p-3.5">Demand (Tons)</th>
-                <th className="p-3.5">Mandi Price</th>
-                <th className="p-3.5">Direct Buyer Price</th>
-                <th className="p-3.5 text-right">Farmer Premium</th>
+                <th className="p-4">Region / District</th>
+                <th className="p-4">Crop</th>
+                <th className="p-4">Supply (Tons)</th>
+                <th className="p-4">Demand (Tons)</th>
+                <th className="p-4">Mandi Price</th>
+                <th className="p-4">Direct Buyer Price</th>
+                <th className="p-4 text-right">Farmer Premium</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-slate-100">
               {regionalSupplyDemand.map((r, idx) => (
-                <tr key={idx} className="hover:bg-slate-50">
-                  <td className="p-3.5 font-bold text-slate-900">{r.region}</td>
-                  <td className="p-3.5 text-slate-700">{r.crop}</td>
-                  <td className="p-3.5 text-emerald-700 font-semibold">{r.supply} T</td>
-                  <td className="p-3.5 text-indigo-700 font-semibold">{r.demand} T</td>
-                  <td className="p-3.5 text-slate-700">₹{r.mandiPrice}/q</td>
-                  <td className="p-3.5 font-bold text-emerald-700">₹{r.buyerPrice}/q</td>
-                  <td className="p-3.5 text-right font-extrabold text-emerald-700">
+                <tr key={idx} className="hover:bg-slate-50 transition-colors">
+                  <td className="p-4 font-bold text-slate-900">{r.region}</td>
+                  <td className="p-4 text-slate-700 font-medium">{r.crop}</td>
+                  <td className="p-4 text-emerald-700 font-bold">{r.supply} T</td>
+                  <td className="p-4 text-indigo-700 font-bold">{r.demand} T</td>
+                  <td className="p-4 text-slate-700 font-medium">₹{r.mandiPrice}/q</td>
+                  <td className="p-4 font-black text-emerald-700 text-base">₹{r.buyerPrice}/q</td>
+                  <td className="p-4 text-right font-black text-emerald-700 text-base">
                     +₹{r.buyerPrice - r.mandiPrice}/q ({Math.round(((r.buyerPrice - r.mandiPrice)/r.mandiPrice)*100)}%)
                   </td>
                 </tr>
