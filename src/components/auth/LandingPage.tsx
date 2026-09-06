@@ -47,7 +47,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onLoginSuccess }) => {
         <div className="absolute inset-0 opacity-10 bg-[radial-gradient(#34d399_1px,transparent_1px)] [background-size:16px_16px]"></div>
 
         <div className="hero-orb absolute -right-32 top-6 h-[34rem] w-[34rem] rounded-full" />
-        <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5 sm:py-6 flex items-center justify-between relative z-10">
+        <nav className="w-full px-4 sm:px-6 lg:px-8 xl:px-10 py-5 sm:py-6 flex items-center justify-between relative z-10">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 rounded-2xl bg-gradient-to-br from-emerald-400 to-teal-500 flex items-center justify-center shadow-lg shadow-emerald-500/30">
               <Sprout className="w-6 h-6 text-white" />
@@ -75,7 +75,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onLoginSuccess }) => {
         </nav>
 
         {/* Hero Section Content */}
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-12 sm:pt-16 pb-20 sm:pb-24 relative z-10 text-center md:text-left grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+        <div className="w-full px-4 sm:px-6 lg:px-8 xl:px-10 pt-12 sm:pt-16 pb-20 sm:pb-24 relative z-10 text-center md:text-left grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
           <div>
             <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/5 border border-emerald-300/20 text-emerald-100 text-xs font-semibold mb-6">
               <Sparkles className="w-3.5 h-3.5 text-amber-300" />
@@ -150,7 +150,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onLoginSuccess }) => {
       </div>
 
       {/* Role Selection Cards Section */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20">
+      <div className="w-full px-4 sm:px-6 lg:px-8 xl:px-10 py-16 sm:py-20">
         <div className="text-center max-w-2xl mx-auto mb-12">
           <h2 className="text-2xl sm:text-3xl font-bold font-serif text-slate-900 mb-3">Select Your Role to Access Portal</h2>
           <p className="text-slate-600 text-sm">

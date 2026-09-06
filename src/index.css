@@ -17,7 +17,7 @@
 }
 @layer components {
   .glass { @apply border border-white/80 bg-white/80 shadow-soft backdrop-blur-xl; }
-  .page-shell { @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8; }
+  .page-shell { @apply w-full px-4 sm:px-6 lg:px-8 xl:px-10 py-6 sm:py-8; }
   .section-label { @apply mb-3 flex items-center gap-2 text-[10px] font-bold uppercase tracking-[0.18em] text-green-700; }
   .nav-link { @apply flex w-full items-center gap-3 rounded-xl px-3 py-2.5 text-left text-sm font-medium text-slate-500 transition hover:bg-green-50 hover:text-green-800; }
   .nav-link-active { @apply bg-gradient-to-r from-green-700 to-emerald-600 text-white shadow-glow hover:text-white; }

@@ -35,7 +35,7 @@ export const Header: React.FC<HeaderProps> = ({ onOpenCSVModal, onOpenGrievanceM
     <header className="sticky top-0 z-40 border-b border-emerald-950/10 bg-white/90 shadow-[0_4px_18px_rgba(15,23,42,0.05)] backdrop-blur-xl">
       {/* Top Demo Persona Switcher Bar */}
       <div className="bg-[#12362c] text-emerald-100 text-xs">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-1.5 flex flex-wrap items-center justify-between gap-2">
+        <div className="w-full px-4 sm:px-6 lg:px-8 xl:px-10 py-1.5 flex flex-wrap items-center justify-between gap-2">
           <div className="flex items-center gap-2 font-medium">
             <Sparkles className="w-3.5 h-3.5 text-amber-300" />
             <span className="hidden sm:inline">Demo workspace</span>
@@ -61,7 +61,7 @@ export const Header: React.FC<HeaderProps> = ({ onOpenCSVModal, onOpenGrievanceM
       </div>
 
       {/* Main Header Bar */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3.5 flex items-center justify-between gap-4">
+      <div className="w-full px-4 sm:px-6 lg:px-8 xl:px-10 py-3.5 flex items-center justify-between gap-4">
         {/* Brand & Tagline */}
         <div className="flex items-center gap-3">
           <div className="w-10 h-10 rounded-2xl bg-gradient-to-br from-emerald-600 to-teal-500 flex items-center justify-center shadow-lg shadow-emerald-200/80">
@@ -161,7 +161,7 @@ export const Header: React.FC<HeaderProps> = ({ onOpenCSVModal, onOpenGrievanceM
 
       {showMobileMenu && (
         <div className="lg:hidden border-t border-slate-100 bg-white px-4 py-3 shadow-lg">
-          <div className="max-w-7xl mx-auto flex flex-wrap gap-2 text-xs">
+          <div className="w-full px-4 sm:px-6 lg:px-8 xl:px-10 flex flex-wrap gap-2 text-xs">
             {onOpenCSVModal && <button onClick={onOpenCSVModal} className="inline-flex items-center gap-1.5 rounded-xl border border-emerald-200 bg-emerald-50 px-3 py-2 font-semibold text-emerald-800"><Upload className="w-3.5 h-3.5" /> Import data</button>}
             {onOpenGrievanceModal && <button onClick={onOpenGrievanceModal} className="rounded-xl bg-slate-100 px-3 py-2 font-semibold text-slate-700">Grievance / Dispute</button>}
             {user && <button onClick={logout} className="rounded-xl bg-rose-50 px-3 py-2 font-semibold text-rose-700">Sign out</button>}

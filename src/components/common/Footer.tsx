@@ -4,7 +4,7 @@ import { Sprout, ShieldCheck, FileSpreadsheet, Globe, Award } from 'lucide-react
 export const Footer: React.FC = () => {
   return (
     <footer className="bg-slate-900 text-slate-400 text-xs py-10 border-t border-slate-800">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-4 gap-8">
+      <div className="w-full px-4 sm:px-6 lg:px-8 xl:px-10 grid grid-cols-1 md:grid-cols-4 gap-8">
         <div>
           <div className="flex items-center gap-2 text-white font-bold text-base mb-2">
             <Sprout className="w-5 h-5 text-emerald-400" />
@@ -55,7 +55,7 @@ export const Footer: React.FC = () => {
         </div>
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 mt-8 border-t border-slate-800 flex flex-wrap justify-between items-center text-slate-500 text-[11px]">
+      <div className="w-full px-4 sm:px-6 lg:px-8 xl:px-10 pt-8 mt-8 border-t border-slate-800 flex flex-wrap justify-between items-center text-slate-500 text-[11px]">
         <p>© 2026 Kisan Market Platform. Tagline: "Better Prices. Better Buyers. Better Decisions."</p>
         <p>Built as a unified standalone AgriTech application.</p>
       </div>
