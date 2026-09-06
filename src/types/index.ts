@@ -1,135 +1,285 @@
-export type Page = 
-  | 'landing' 
-  | 'dashboard' 
-  | 'fpos' 
-  | 'impact' 
-  | 'health-risk' 
-  | 'recommendations' 
-  | 'gis' 
-  | 'reports' 
-  | 'data-mgmt';
+export type Role = 'farmer' | 'fpo' | 'buyer' | 'admin';
 
-export type PerformanceStatus = 'High' | 'Moderate' | 'Needs Attention';
-
-export type InterventionType = 'irrigation' | 'marketLinkage' | 'production' | 'chcServices' | 'storage';
-
-export interface FpoIntervention {
+export interface User {
+  id: number;
   name: string;
-  type: InterventionType;
-  startDate: string;
-  investmentAmount: number; // in INR
-  beneficiaries: number;
-  status: 'Active' | 'Completed' | 'Planned';
+  email: string;
+  role: Role;
+  phone?: string;
+  state?: string;
+  district?: string;
+  is_verified: boolean;
+  verification_badge: 'VERIFIED' | 'TRUSTED' | 'NEW BUYER';
+  reliability_score: number;
 }
 
-export interface HistoricalIncome {
-  year: string;
-  revenue: number; // in Lakhs
-  netIncome: number; // in Lakhs
-}
-
-export interface FpoData {
-  id: string;
-  name: string;
-  state: string;
+export interface CropLot {
+  id: number;
+  seller_id: number;
+  seller_name?: string;
+  crop_name: string;
+  quantity_quintals: number;
+  grade: string; // Grade A, Grade B, Grade C
+  moisture_pct: number;
+  grain_size: string;
+  variety: string;
+  minimum_price: number; // per quintal
+  location: string;
   district: string;
-  block: string;
-  formationYear: number;
-  membersCount: number;
-  smallFarmersCount: number;
-  womenMembersCount: number;
-  primaryCrops: string[];
-  annualProductionTonnes: number;
-  revenueBeforeIntervention: number; // Lakhs
-  revenueAfterIntervention: number; // Lakhs
-  expensesLakhs: number;
-  netIncomeLakhs: number;
-  incomeGrowthPct: number;
-  healthScore: number; // 0-100
-  performanceStatus: PerformanceStatus;
-  lat: number;
-  lng: number;
-  interventions: FpoIntervention[];
-  historicalIncome: HistoricalIncome[];
+  state: string;
+  storage_available: boolean;
+  storage_cost_per_quintal_month: number;
+  image_url?: string;
+  status: 'Active' | 'Negotiating' | 'Sold' | 'Cancelled';
+  is_bulk: boolean;
+  fpo_name?: string;
+  aggregated_farmer_count: number;
+  created_at: string;
 }
 
-export interface CausalImpactBreakdown {
-  irrigationPct: number;
-  marketLinkagePct: number;
-  productionImprovementPct: number;
-  chcServicesPct: number;
-  otherFactorsPct: number;
-  totalUpliftLakhs: number;
+export interface BuyerRequirement {
+  id: number;
+  buyer_id: number;
+  buyer_name?: string;
+  crop_name: string;
+  quantity_quintals: number;
+  grade: string;
+  max_moisture_pct: number;
+  target_price: number;
+  preferred_location: string;
+  max_distance_km: number;
+  delivery_deadline: string;
+  status: 'Open' | 'Fulfilled' | 'Closed';
+  created_at: string;
 }
 
-export interface IncomePredictionResult {
-  currentIncomeLakhs: number;
-  predictedIncomeLakhs: number;
-  expectedGrowthPct: number;
-  confidencePct: number;
-  lowerBoundLakhs: number;
-  upperBoundLakhs: number;
-  trend: { year: string; actual?: number; predicted: number }[];
+export interface MarketPrice {
+  id: number;
+  commodity: string;
+  mandi_name: string;
+  district: string;
+  state: string;
+  modal_price: number;
+  min_price: number;
+  max_price: number;
+  arrivals_tons: number;
+  demand_level: 'Very High' | 'High' | 'Medium' | 'Low';
+  distance_km: number;
+  date: string;
 }
 
-export interface WhatIfParams {
-  irrigationBoostPct: number; // 0 - 50%
-  marketLinkageBoostPct: number; // 0 - 50%
-  storageCapacityTons: number; // 0 - 500 tons
-  chcMachineryCount: number; // 0 - 10 units
-  trainingSessionsCount: number; // 0 - 20 sessions
+export interface NetRealization {
+  gross_revenue: number;
+  transport_cost: number;
+  storage_cost: number;
+  transaction_fee: number;
+  total_costs: number;
+  net_revenue: number;
+  effective_net_price_per_quintal: number;
+  profitability_percentage: number;
 }
 
-export interface WhatIfResult {
-  baselineRevenueLakhs: number;
-  simulatedRevenueLakhs: number;
-  additionalIncomeLakhs: number;
-  simulatedGrowthPct: number;
-  simulatedHealthScore: number;
+export interface MarketComparison {
+  mandi_name: string;
+  district: string;
+  state: string;
+  modal_price: number;
+  distance_km: number;
+  demand_level: string;
+  arrivals_tons: number;
+  net_realization: NetRealization;
 }
 
-export interface HealthScoreBreakdown {
-  overallScore: number;
-  status: 'Excellent' | 'Good' | 'Moderate' | 'Needs Attention';
-  pillars: {
-    revenueGrowth: number; // 0-100
-    profitability: number; // 0-100
-    yieldStability: number; // 0-100
-    marketLinkage: number; // 0-100
-    membershipEngagement: number; // 0-100
-    chcUtilization: number; // 0-100
+export interface ForecastFactor {
+  type: 'positive' | 'negative';
+  driver: string;
+}
+
+export interface EventAlert {
+  type: string;
+  severity: 'Low' | 'Medium' | 'High' | 'Critical';
+  headline: string;
+  impact_summary: string;
+  status: string;
+  detected_time: string;
+  region_affected: string;
+}
+
+export interface UpgradedPrediction {
+  crop_name: string;
+  region: string;
+  current_price: number;
+  horizon_days: number;
+  expected_price_range: {
+    min: number;
+    max: number;
+    modal: number;
+    change_pct: number;
+  };
+  confidence: {
+    score: number;
+    level: 'High' | 'Medium' | 'Low';
+    uncertainty_reason: string;
+  };
+  data_quality_pct: number;
+  last_updated_timestamp: string;
+  factors: ForecastFactor[];
+  event_alert?: EventAlert | null;
+  chart_data: { period: string; price: number; min?: number; max?: number }[];
+  technical_details: {
+    model_type: string;
+    mae: number;
+    rmse: number;
+    mape: number;
+    features_used: string[];
   };
 }
 
-export interface RiskIndicator {
-  id: string;
-  fpoId: string;
-  fpoName: string;
-  state: string;
-  riskType: 'Income Decline' | 'High Expense Ratio' | 'Low Intervention Usage' | 'Market Price Volatility' | 'Distress Sale Risk';
-  severity: 'High' | 'Medium' | 'Low';
-  description: string;
-  recommendedAction: string;
-  impactScore: number;
+export interface ModelValidationStats {
+  primary_model: string;
+  validation_method: string;
+  metrics: {
+    mae: string;
+    rmse: string;
+    mape: string;
+    r2_score: string;
+  };
+  baseline_comparison: {
+    naive_moving_avg_mae: string;
+    model_improvement_pct: string;
+  };
+  last_trained: string;
 }
 
-export interface AiRecommendation {
-  id: string;
-  fpoId?: string;
-  fpoName?: string;
-  title: string;
-  category: 'Market Linkage' | 'Irrigation Infrastructure' | 'Storage & Processing' | 'CHC Expansion' | 'Financial Management';
+export interface PricePrediction {
+  crop_name: string;
+  current_price: number;
+  predictions: {
+    day_7: { price: number; min: number; max: number; change_pct: number };
+    day_15: { price: number; min: number; max: number; change_pct: number };
+    day_30: { price: number; min: number; max: number; change_pct: number };
+  };
+  confidence_score: number;
+  trend_direction: 'UPWARD' | 'DOWNWARD' | 'STABLE';
+}
+
+export interface SaleWindowAdvice {
+  crop_name: string;
+  recommendation: 'SELL NOW' | 'WAIT 7–10 DAYS' | 'SELL PARTIALLY / STORE NEARBY' | 'SELL PARTIALLY / HEDGE RISK' | 'MOVE TO DISTANT PROCESSOR MARKET' | 'CONSIDER DISTANT PROCESSOR MARKET';
+  window: string;
   reason: string;
-  priority: 'High' | 'Medium' | 'Low';
-  expectedImpactPct: number;
-  actionableSteps: string[];
+  current_price: number;
+  projected_15d_price?: number;
+  projected_15d_range?: string;
+  estimated_net_gain_rs: number;
+  storage_advisable?: boolean;
+  event_active?: boolean;
+  confidence_level?: string;
 }
 
-export interface DataQualityReport {
-  totalRows: number;
-  validRows: number;
-  missingValuesCount: number;
-  anomaliesDetected: number;
-  dataQualityScore: number; // 0-100
-  issues: string[];
+export interface BuyerMatch {
+  requirement_id: number;
+  buyer_id: number;
+  buyer_name: string;
+  buyer_badge: 'VERIFIED' | 'TRUSTED' | 'NEW BUYER';
+  buyer_reliability: number;
+  crop_name: string;
+  requested_qty: number;
+  target_price: number;
+  preferred_location: string;
+  delivery_deadline: string;
+  match: {
+    match_score: number;
+    quality_match: 'EXCELLENT MATCH' | 'GOOD MATCH' | 'PARTIAL MATCH' | 'MISMATCH';
+    match_label: string;
+    offered_price: number;
+    distance_km: number;
+    buyer_reliability: number;
+    reasons: string[];
+  };
+}
+
+export interface Offer {
+  id: number;
+  lot_id: number;
+  buyer_id: number;
+  buyer_name?: string;
+  seller_id: number;
+  seller_name?: string;
+  crop_name?: string;
+  offered_price: number;
+  offered_quantity: number;
+  payment_terms: string;
+  pickup_date: string;
+  status: 'Pending' | 'Countered' | 'Accepted' | 'Rejected';
+  counter_price?: number;
+  notes?: string;
+  created_at: string;
+}
+
+export interface Order {
+  id: number;
+  offer_id: number;
+  lot_id: number;
+  buyer_name: string;
+  seller_name: string;
+  crop_name: string;
+  quantity_quintals: number;
+  price_per_quintal: number;
+  gross_value: number;
+  transport_cost: number;
+  net_realization: number;
+  status: 'Confirmed' | 'Picked Up' | 'In Transit' | 'Delivered' | 'Completed';
+  pickup_date: string;
+  delivery_date: string;
+  created_at: string;
+}
+
+export interface Payment {
+  id: number;
+  order_id: number;
+  transaction_value: number;
+  amount_paid: number;
+  remaining_amount: number;
+  payment_method: string;
+  status: 'Pending' | 'Processing' | 'Paid' | 'Disputed';
+  transaction_id: string;
+  payment_date: string;
+}
+
+export interface LogisticsItem {
+  id: number;
+  order_id: number;
+  pickup_location: string;
+  destination: string;
+  distance_km: number;
+  estimated_cost: number;
+  vehicle_type: string;
+  vehicle_status: 'Scheduled' | 'En Route' | 'Delivered';
+  pickup_date: string;
+  delivery_date: string;
+}
+
+export interface Dispute {
+  id: number;
+  order_id: number;
+  raised_by_name: string;
+  category: 'Quality' | 'Quantity' | 'Payment' | 'Delivery' | 'Logistics';
+  title: string;
+  description: string;
+  evidence_url?: string;
+  status: 'Open' | 'Under Review' | 'Resolved' | 'Rejected';
+  resolution_notes?: string;
+  created_at: string;
+}
+
+export interface FPOMember {
+  id: number;
+  fpo_id: number;
+  farmer_name: string;
+  village: string;
+  crop_name: string;
+  quantity_quintals: number;
+  harvest_date: string;
+  is_aggregated: boolean;
 }
